@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  leronx:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: leronx-engine
+    environment:
+      - LERONX_GPU=false
+      - LERONX_CODEC=h265
+      - PEXELS_API_KEY=${PEXELS_API_KEY:-}
+      - PIXABAY_API_KEY=${PIXABAY_API_KEY:-}
+    volumes:
+      - ../output:/app/output
+    restart: unless-stopped
